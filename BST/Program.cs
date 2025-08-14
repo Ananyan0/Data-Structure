@@ -1,42 +1,43 @@
-﻿namespace BinaryTree;
+﻿using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        MyBinaryTree node = new();
+        MyBinaryTree tree = new MyBinaryTree();
 
-        node.Insert(27);
-        node.Insert(83);
-        node.Insert(12);
-        node.Insert(45);
-        node.Insert(69);
-        node.Insert(5);
-        node.Insert(90);
-        node.Insert(33);
-        node.Insert(18);
-        node.Insert(76);
-
-        TreeNode? foundNode = node.Search(17);
-
-        if (foundNode != null)
-            System.Console.WriteLine(foundNode.val);
-        else
+        Console.WriteLine("=== Inserting values into the tree ===");
+        int[] values = { 50, 30, 70, 20, 40, 60, 80 };
+        foreach (int v in values)
         {
-            System.Console.WriteLine("Tree doesn't contains that value");
+            tree.Insert(v);
         }
 
-        //node.PreOrderTraversal(node.root);
-        node.InOrderTraversal(node.root);
-        //node.PostOrderTraversal(node.root);;
+        Console.WriteLine("InOrder Traversal (sorted order):");
+        tree.InOrderTraversal(tree.root);
+        Console.WriteLine("\n");
 
-        //TreeNode? res = node.Successor(node.root, 45);
-        //Console.WriteLine(res.val);
+        Console.WriteLine("PreOrder Traversal:");
+        tree.PreOrderTraversal(tree.root);
+        Console.WriteLine("\n");
 
-        TreeNode? res = node.Predecessor(node.root, 45);
-        Console.WriteLine(res.val);
+        Console.WriteLine("PostOrder Traversal:");
+        tree.PostOrderTraversal(tree.root);
+        Console.WriteLine("\n");
 
+        Console.WriteLine("=== Searching for a value ===");
+        int searchValue = 40;
+        var found = tree.Search(searchValue);
+       
 
+        Console.WriteLine("\n=== Deleting a value ===");
+        tree.root = tree.Delete(tree.root, 30);
+        tree.InOrderTraversal(tree.root);
+        Console.WriteLine();
 
+        Console.WriteLine("\n=== Finding successor and predecessor ===");
+        int target = 60;
+        var successor = tree.Successor(tree.root, target);
+        var predecessor = tree.Predecessor(tree.root, target);
     }
 }

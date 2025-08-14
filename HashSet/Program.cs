@@ -1,24 +1,33 @@
 ﻿class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        MyHashSet set = new();
+        MyHashSet set = new MyHashSet();
 
-        set.Add(14);
-        set.Add(243);
-        set.Add(3322);
-        set.Add(433);
-        set.Add(14);
-        set.Add(65);
-
-        ////////////
+        Console.WriteLine("=== Adding elements ===");
+        set.Add(10);
+        set.Add(20);
+        set.Add(30);
+        set.Add(15);
+        set.Add(25);
+        set.Add(35); 
         set.Print();
+        Console.WriteLine();
 
-        bool isContains = set.Contains(21);
-        System.Console.WriteLine(isContains);
-        
-        
-        set.Remove(21);
+        Console.WriteLine(" Checking contains");
+        Console.WriteLine($"Contains 20 {set.Contains(20)}");
+        Console.WriteLine($"Contains 50 {set.Contains(50)}");
+        Console.WriteLine();
+
+        Console.WriteLine(" Removing elements ");
+        set.Remove(15);
         set.Print();
+        Console.WriteLine();
+
+        Console.WriteLine(" Adding duplicate elements ");
+
+        set.Add(35); 
+        set.Print();
+        Console.WriteLine();
     }
 }
